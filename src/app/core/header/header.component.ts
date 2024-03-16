@@ -21,17 +21,15 @@ export class HeaderComponent implements OnInit{
   public onLogout(): void{
     this.authService.logOut();
     this.router.navigate(['/']);
-
   }
 
-  public checkLoginState(): boolean{
+  public checkLoginState(): void{
 
     this.authService
       .$userIsLoggedIn
       .subscribe((loginState: boolean) => {
         this.userIsLoggedIn = loginState;
       });
-    return false;
   }
 
 }

@@ -40,6 +40,7 @@ export class TokenService {
     }
 
     if(this.tokenExpired(token)){
+      this.removeToken();
       return false;
     }
 
