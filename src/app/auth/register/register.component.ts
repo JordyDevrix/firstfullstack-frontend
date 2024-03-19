@@ -7,11 +7,11 @@ import { AuthService } from '../auth.service';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit{
-  
+export class RegisterComponent implements OnInit {
+
   public registerForm: FormGroup;
-  
-  constructor(private fb: FormBuilder, private authService: AuthService){
+
+  constructor(private fb: FormBuilder, private authService: AuthService) {
 
   }
 
@@ -25,7 +25,10 @@ export class RegisterComponent implements OnInit{
     });
   }
 
-  public onSubmit(): void{
-    console.log('ok');
+  public onSubmit(): void {
+    this.authService.register(this.registerForm.value).subscribe((authResponse: { "token": string }) => {
+      console.log(authResponse.token, 'User registered');
+
+    })
   }
 }

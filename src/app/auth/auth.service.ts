@@ -11,18 +11,18 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   private _loginEndpoint: string = 'http://localhost:8080/api/auth/login';
-  private _registerEndpoint: string = 'http://localhost:8080/api/auth/login';
-  
+  private _registerEndpoint: string = 'http://localhost:8080/api/auth/register';
+
   public $userIsLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private tokenService: TokenService) {
-    if(this.tokenService.isValid()){
+    if (this.tokenService.isValid()) {
       this.$userIsLoggedIn.next(true);
     }
   }
 
 
-  public login(authRequest: AuthRequest): Observable<AuthResponse>{
+  public login(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>(this._loginEndpoint, authRequest)
       .pipe(
@@ -33,18 +33,18 @@ export class AuthService {
       );
   }
 
-  public register(authRequest: AuthRequest): Observable<AuthResponse>{ 
+  public register(authRequest: AuthRequest): Observable<AuthResponse> {
     return this.http
-    .post<AuthResponse>(this._registerEndpoint, authRequest)
-    .pipe(
-      tap((authResponse: AuthResponse) => {
-        this.tokenService.storeToken(authResponse.token);
-        this.$userIsLoggedIn.next(true);
-      })
-    );
+      .post<AuthResponse>(this._registerEndpoint, authRequest)
+      .pipe(
+        tap((authResponse: AuthResponse) => {
+          this.tokenService.storeToken(authResponse.token);
+          this.$userIsLoggedIn.next(true);
+        })
+      );
   }
 
-  public logOut(): void{
+  public logOut(): void {
     this.tokenService.removeToken();
     this.$userIsLoggedIn.next(false);
   }

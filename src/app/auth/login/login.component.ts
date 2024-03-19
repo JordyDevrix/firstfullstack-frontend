@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
-  
+export class LoginComponent implements OnInit {
+
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router){}
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  public onSubmit(): void{
+  public onSubmit(): void {
     this.authService
       .login(this.loginForm.value)
       .subscribe((authReponse: AuthResponse) => {
