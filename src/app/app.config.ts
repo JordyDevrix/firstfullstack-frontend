@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { ApplicationConfig, DEFAULT_CURRENCY_CODE, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,5 +10,10 @@ export const appConfig: ApplicationConfig = {
   importProvidersFrom(HttpClientModule),
   provideHttpClient(withInterceptors([
     authInterceptor
-  ]))]
+  ])),
+  { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    provideRouter(routes),
+    importProvidersFrom(HttpClientModule)
+
+]
 };

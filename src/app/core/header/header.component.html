@@ -5,7 +5,7 @@
                 <i class="bi bi-cup hs-leiden-primary" [style.display]="showHotCupIcon ? 'none' : 'inline-block'"></i>
                 <i class="bi bi-cup-hot hs-leiden-primary" [style.display]="showHotCupIcon ? 'inline-block' : 'none'"></i>
                 <span class="webshop-name">
-                    Initech webshop
+                    music webshop
                 </span>
             </span>
         </a>
@@ -16,7 +16,8 @@
             <li class="nav-item"><a [routerLinkActive]="['active']" [routerLink]="['auth', 'register']" *ngIf="!userIsLoggedIn" class="nav-link">Register</a></li>
             <li class="nav-item"><a (click)="onLogout()" class="nav-link" *ngIf="userIsLoggedIn">Log out</a></li>            
             <li class="nav-item"><a [routerLinkActive]="['active']" [routerLink]="['unprotected']" class="nav-link">Unprotected route</a></li>
-            <li class="nav-item"><a [routerLinkActive]="['active']" [routerLink]="['protected']" class="nav-link">Protected route</a></li>            
+            <li class="nav-item"><a [routerLinkActive]="['active']" [routerLink]="['protected']" class="nav-link">Protected route</a></li>
+            <li class="nav-item"><a [routerLinkActive]="['active']" [routerLink]="['products']" class="nav-link">Products</a></li>            
             
         </ul>
     </header>
